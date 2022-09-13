@@ -136,8 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b4dfe9be9782943856964ff81afee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockCount: 10
+  blockCount: 11
   block: {fileID: 3099886649644663853, guid: 30a2d070eea76244b869cd25fa6e2e34, type: 3}
   diamondBlock: {fileID: 1809328949076261519, guid: 0664d4f9a4206ac4c839d53895198f3c, type: 3}
   addBulletProp: {fileID: 4217799945918285250, guid: 99a3986ae4efca3428e0c1d736036a98, type: 3}
   initBlockY: 3.5
+  blockSpacing: 0.5

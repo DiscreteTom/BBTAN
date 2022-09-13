@@ -72,7 +72,7 @@ namespace BBTAN.Naive {
             o = null;
         }
         if (o != null) {
-          o.transform.position = new Vector3((i - this.blockCount / 2) * this.blockSpacing, this.initBlockY, 0);
+          o.transform.position = new Vector3((i - (this.blockCount - 1) / 2.0f) * this.blockSpacing, this.initBlockY, 0);
           o.transform.parent = props.transform;
         }
       }
