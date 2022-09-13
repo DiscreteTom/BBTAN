@@ -1011,6 +1011,12 @@ MonoBehaviour:
   bulletSpeed: 5
   bullet: {fileID: 7067788023397709532, guid: a48d45fd7fa2e0b449b1c94767d858fa, type: 3}
   intervalMs: 100
+  blockCount: 11
+  block: {fileID: 3099886649644663853, guid: 30a2d070eea76244b869cd25fa6e2e34, type: 3}
+  diamondBlock: {fileID: 1809328949076261519, guid: 0664d4f9a4206ac4c839d53895198f3c, type: 3}
+  addBulletProp: {fileID: 4217799945918285250, guid: 99a3986ae4efca3428e0c1d736036a98, type: 3}
+  initBlockY: 3.25
+  blockSpacing: 0.5
 --- !u!1 &1393587727
 GameObject:
   m_ObjectHideFlags: 0
