@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BBTAN.Naive {
-  public class GameManager : MonoBehaviour {
+  public class GameManager {
     static public bool shooting = false;
     static public int score = 1;
     static public int highScore = 0;
