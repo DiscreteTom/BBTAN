@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DT.General;
+using TMPro;
 using UnityEngine;
 
 namespace BBTAN.Naive {
@@ -33,6 +34,8 @@ namespace BBTAN.Naive {
           GameManager.nextBallCount = GameManager.ballCount;
           GameManager.ballDestroyed = 0;
 
+          this.Hide();
+
           // create bullets
           var bulletVelocity = (mousePos - this.transform.position).normalized * this.bulletSpeed;
           for (var i = 0; i < GameManager.ballCount; ++i) {
@@ -45,6 +48,17 @@ namespace BBTAN.Naive {
         // shooting, disable line
         this.line.SetPosition(1, this.transform.position);
       }
+    }
+
+    void Hide() {
+      this.transform.Find("Canvas").gameObject.SetActive(false);
+      this.transform.Find("Bullet").gameObject.SetActive(false);
+    }
+
+    public void Show() {
+      this.transform.Find("Bullet").gameObject.SetActive(true);
+      this.transform.Find("Canvas").gameObject.SetActive(true);
+      this.transform.Find("Canvas").Find("BallCountText").GetComponent<TMP_Text>().text = "x" + GameManager.ballCount.ToString();
     }
   }
 }
