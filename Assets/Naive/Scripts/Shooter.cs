@@ -75,7 +75,12 @@ namespace BBTAN.Naive {
       var props = GameObject.Find("Props");
       // move all existing props
       for (var i = 0; i < props.transform.childCount; ++i) {
-        props.transform.GetChild(i).transform.Translate(Vector2.down * this.blockSpacing);
+        var child = props.transform.GetChild(i);
+        child.transform.Translate(Vector2.down * this.blockSpacing);
+        if (child.transform.position.y < -4) {
+          Destroy(child.gameObject);
+          print("Game Over!");
+        }
       }
 
       // index of add bullet prop
