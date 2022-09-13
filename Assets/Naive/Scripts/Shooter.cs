@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using DT.General;
 using UnityEngine;
 
 namespace BBTAN.Naive {
   public class Shooter : MonoBehaviour {
     [SerializeField] float bulletSpeed;
     [SerializeField] GameObject bullet;
+    [SerializeField] float intervalMs = 100;
 
     LineRenderer line;
 
@@ -34,8 +36,9 @@ namespace BBTAN.Naive {
           // create bullets
           var bulletVelocity = (mousePos - this.transform.position).normalized * this.bulletSpeed;
           for (var i = 0; i < GameManager.ballCount; ++i) {
-            // TODO: sleep
-            Instantiate(this.bullet, this.transform.position, Quaternion.identity).GetComponent<Bullet>().SetVelocity(bulletVelocity);
+            this.SetTimeout(this.intervalMs * i, () => {
+              Instantiate(this.bullet, this.transform.position, Quaternion.identity).GetComponent<Bullet>().SetVelocity(bulletVelocity);
+            });
           }
         }
       } else {
