@@ -11,6 +11,13 @@ namespace BBTAN.Naive {
     void OnCollisionEnter2D(Collision2D c) {
       if (c.gameObject.tag == "Bottom") {
         Destroy(this.gameObject);
+
+        // update game state
+        GameManager.ballDestroyed++;
+        if (GameManager.ballDestroyed == GameManager.ballCount) {
+          GameManager.shooting = false;
+          GameManager.ballCount = GameManager.nextBallCount;
+        }
       }
     }
   }

@@ -26,9 +26,13 @@ namespace BBTAN.Naive {
 
         // check shoot
         if (Input.GetMouseButtonDown(0)) {
-          var bulletVelocity = (mousePos - this.transform.position).normalized * this.bulletSpeed;
+          // update game state
+          GameManager.shooting = true;
+          GameManager.nextBallCount = GameManager.ballCount;
+          GameManager.ballDestroyed = 0;
 
           // create bullets
+          var bulletVelocity = (mousePos - this.transform.position).normalized * this.bulletSpeed;
           for (var i = 0; i < GameManager.ballCount; ++i) {
             // TODO: sleep
             Instantiate(this.bullet, this.transform.position, Quaternion.identity).GetComponent<Bullet>().SetVelocity(bulletVelocity);
