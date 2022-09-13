@@ -30,6 +30,13 @@ namespace BBTAN.Naive {
 
         // update game state
         GameManager.ballDestroyed++;
+        if (GameManager.ballDestroyed == 1) {
+          // the first ball, change shooter position
+          var shooter = GameObject.Find("Shooter");
+          var pos = shooter.transform.position;
+          pos.x = this.transform.position.x;
+          shooter.transform.position = pos;
+        }
         if (GameManager.ballDestroyed == GameManager.ballCount) {
           GameManager.shooting = false;
           GameManager.ballCount = GameManager.nextBallCount;

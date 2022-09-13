@@ -44,21 +44,21 @@ namespace BBTAN.Naive {
             });
           }
         }
-      } else {
-        // shooting, disable line
-        this.line.SetPosition(1, this.transform.position);
       }
     }
 
     void Hide() {
       this.transform.Find("Canvas").gameObject.SetActive(false);
       this.transform.Find("Bullet").gameObject.SetActive(false);
+      this.line.positionCount = 0;
     }
 
     public void Show() {
       this.transform.Find("Bullet").gameObject.SetActive(true);
       this.transform.Find("Canvas").gameObject.SetActive(true);
       this.transform.Find("Canvas").Find("BallCountText").GetComponent<TMP_Text>().text = "x" + GameManager.ballCount.ToString();
+      this.line.positionCount = 2;
+      this.line.SetPosition(0, this.transform.position);
     }
   }
 }
