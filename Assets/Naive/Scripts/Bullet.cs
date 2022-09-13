@@ -39,8 +39,9 @@ namespace BBTAN.Naive {
             GameManager.highScore = GameManager.score;
             this.highScoreText.text = "TOP:" + GameManager.highScore.ToString();
           }
-          GameObject.Find("Shooter").GetComponent<Shooter>().Show();
-          GameObject.Find("Shooter").GetComponent<Shooter>().UpdateProps();
+          var shooter = GameObject.Find("Shooter").GetComponent<Shooter>();
+          shooter.Show();
+          shooter.UpdateProps();
         }
       }
     }
