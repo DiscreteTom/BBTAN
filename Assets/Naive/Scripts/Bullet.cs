@@ -7,5 +7,11 @@ namespace BBTAN.Naive {
     public void SetVelocity(Vector2 v) {
       this.GetComponent<Rigidbody2D>().velocity = v;
     }
+
+    void OnCollisionEnter2D(Collision2D c) {
+      if (c.gameObject.tag == "Bottom") {
+        Destroy(this.gameObject);
+      }
+    }
   }
 }
