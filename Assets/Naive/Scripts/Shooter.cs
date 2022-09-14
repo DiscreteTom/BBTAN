@@ -14,6 +14,7 @@ namespace BBTAN.Naive {
     [SerializeField] GameObject block;
     [SerializeField] GameObject diamondBlock;
     [SerializeField] GameObject addBulletProp;
+    [SerializeField] GameObject randomBulletProp;
     [SerializeField] float initBlockY = 5;
     [SerializeField] float blockSpacing = 0.5f;
 
@@ -76,6 +77,10 @@ namespace BBTAN.Naive {
       // move all existing props
       for (var i = 0; i < props.transform.childCount; ++i) {
         var child = props.transform.GetChild(i);
+        if (child.tag == "Random") {
+          Destroy(child.gameObject);
+          continue;
+        }
         child.transform.Translate(Vector2.down * this.blockSpacing);
         if (child.transform.position.y < -4) {
           Destroy(child.gameObject);
@@ -93,12 +98,14 @@ namespace BBTAN.Naive {
           o = Instantiate(this.addBulletProp, Vector3.zero, Quaternion.identity);
         } else {
           var r = Random.Range(0, 10);
-          if (r < 5) {
+          if (r < 4) {
             o = Instantiate(this.block, Vector3.zero, Quaternion.identity);
             o.GetComponent<Block>().SetHealth(GameManager.score);
-          } else if (r < 8) {
+          } else if (r < 7) {
             o = Instantiate(this.diamondBlock, Vector3.zero, Quaternion.identity);
             o.GetComponent<Block>().SetHealth(GameManager.score);
+          } else if (r < 8) {
+            o = Instantiate(this.randomBulletProp, Vector3.zero, Quaternion.identity);
           } else
             o = null;
         }

@@ -7,14 +7,17 @@ namespace BBTAN.Naive {
   public class Bullet : MonoBehaviour {
     TMP_Text scoreText;
     TMP_Text highScoreText;
+    Rigidbody2D body;
 
     void Start() {
       this.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
       this.highScoreText = GameObject.Find("HighScoreText").GetComponent<TMP_Text>();
+      this.body = this.GetComponent<Rigidbody2D>();
     }
 
     public void SetVelocity(Vector2 v) {
-      this.GetComponent<Rigidbody2D>().velocity = v;
+      this.body = this.GetComponent<Rigidbody2D>();
+      this.body.velocity = v;
     }
 
     void OnCollisionEnter2D(Collision2D c) {
@@ -43,6 +46,12 @@ namespace BBTAN.Naive {
           shooter.Show();
           shooter.UpdateProps();
         }
+      }
+    }
+
+    void OnTriggerEnter2D(Collider2D c) {
+      if (c.gameObject.tag == "Random") {
+        this.body.velocity = this.body.velocity.magnitude * new Vector2(Random.Range(-1.0f, 1.0f), 1).normalized;
       }
     }
   }
