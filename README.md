@@ -9,9 +9,9 @@
 不使用框架，使用最原始、最快速的方法，实现 BBTAN。
 所以代码架构非常辣鸡，作为反面教材。
 
-### QFramework
+### MVC
 
-使用 QFramework 作为 MVC 框架，实现 BBTAN
+使用 MVC 的思路，实现 BBTAN
 
 ## 学习资料
 
