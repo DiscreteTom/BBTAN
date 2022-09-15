@@ -12,9 +12,7 @@ namespace DT.General {
     }
 
     public T Value {
-      get {
-        return this.value;
-      }
+      get => this.value;
       set {
         var old = this.value;
         this.value = value;
