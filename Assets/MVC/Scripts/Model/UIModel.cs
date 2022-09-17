@@ -5,16 +5,12 @@ using UnityEngine;
 
 namespace BBTAN.MVC.Model {
   public class UIModel {
-    Watch<int> score;
-    Watch<int> highScore;
+    public Watch<int> Score { get; private set; }
+    public Watch<int> HighScore { get; private set; }
 
     public UIModel() {
-      this.score = new Watch<int>(0);
-      this.highScore = new Watch<int>(0);
+      this.Score = new Watch<int>(0);
+      this.HighScore = new Watch<int>(0);
     }
-
-    // getters
-    public Watch<int> Score => this.score;
-    public Watch<int> HighScore => this.highScore;
   }
 }
