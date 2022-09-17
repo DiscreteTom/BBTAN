@@ -13,7 +13,7 @@ namespace BBTAN.MVC.Controller {
       this.transform = obj.transform;
       this.line = obj.GetComponent<LineRenderer>();
       this.canvas = obj.transform.Find("Canvas").gameObject;
-      this.ballShadow = obj.transform.Find("Bullet").gameObject;
+      this.ballShadow = obj.transform.Find("BallShadow").gameObject;
       this.ballCountText = this.canvas.transform.Find("BallCountText").GetComponent<TMP_Text>();
 
       this.line.positionCount = 2;
