@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace BBTAN.MVC {
   public class AddScoreCommand : ICommand {
-    UIModel uiModel;
+    LevelModel model;
 
-    public AddScoreCommand(UIModel uiModel) {
-      this.uiModel = uiModel;
+    public AddScoreCommand(LevelModel model) {
+      this.model = model;
     }
 
     public void Exec() {
-      this.uiModel.Score.Value++;
-      this.uiModel.HighScore.Value = Mathf.Max(this.uiModel.Score.Value, this.uiModel.HighScore.Value);
+      this.model.Score.Value++;
+      this.model.HighScore.Value = Mathf.Max(this.model.Score.Value, this.model.HighScore.Value);
     }
   }
 }

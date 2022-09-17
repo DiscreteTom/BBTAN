@@ -1,21 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using BBTAN.MVC.Model;
-using DT.General;
 using UnityEngine;
 
 namespace BBTAN.MVC {
   public class App : MonoBehaviour {
-    UIModel uiModel;
+    LevelModel model;
     UIController ui;
 
     void Start() {
       // init
-      this.uiModel = new UIModel();
+      this.model = new LevelModel();
       this.ui = new UIController();
 
       // inject
-      this.ui.Inject(uiModel);
+      this.ui.Inject(model);
     }
 
     void Update() {
