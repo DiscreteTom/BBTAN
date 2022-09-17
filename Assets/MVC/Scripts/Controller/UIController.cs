@@ -9,9 +9,9 @@ namespace BBTAN.MVC {
     TMP_Text scoreText;
     TMP_Text highScoreText;
 
-    public UIController() {
-      this.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
-      this.highScoreText = GameObject.Find("HighScoreText").GetComponent<TMP_Text>();
+    public UIController(TMP_Text scoreText, TMP_Text highScoreText) {
+      this.scoreText = scoreText;
+      this.highScoreText = highScoreText;
     }
 
     public void Inject(LevelModel model) {
