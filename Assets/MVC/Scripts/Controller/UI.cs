@@ -4,9 +4,12 @@ using BBTAN.MVC.Model;
 using TMPro;
 using UnityEngine;
 
-namespace BBTAN.MVC {
-  public class UIController {
-    public UIController(LevelModel model, TMP_Text scoreText, TMP_Text highScoreText) {
+namespace BBTAN.MVC.Controller {
+  public class UI {
+    public UI(LevelModel model, GameObject root) {
+      var scoreText = root.transform.Find("ScoreText").GetComponent<TMP_Text>();
+      var highScoreText = root.transform.Find("HighScoreText").GetComponent<TMP_Text>();
+
       model.Score.AddListener((v, _) => scoreText.text = v.ToString());
       model.HighScore.AddListener((v, _) => highScoreText.text = "TOP:" + v.ToString());
     }
