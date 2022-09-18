@@ -1,7 +1,7 @@
 using BBTAN.MVC.Controller;
 using BBTAN.MVC.Model;
-using TMPro;
 using UnityEngine;
+using DT.General;
 
 namespace BBTAN.MVC {
   public class App : MonoBehaviour {
@@ -16,8 +16,9 @@ namespace BBTAN.MVC {
       this.model = new LevelModel();
 
       // init controllers
-      this.ui = new UI(model, this.gameObject);
-      this.shooter = new Shooter(model, this.gameObject);
+      this.ui = new UI(model);
+      this.shooter = new Shooter(model, this.SetTimeout);
+
     }
 
     void Update() {

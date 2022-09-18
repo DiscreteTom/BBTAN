@@ -5,19 +5,19 @@ namespace BBTAN.MVC.Model {
     public Watch<int> Score { get; private set; }
     public Watch<int> HighScore { get; private set; }
 
-    public int BallCount;
-    public int NextBallCount;
-    public int BallDestroyed;
-    public bool Shooting;
+    public Watch<int> BallCount { get; private set; }
+    public Watch<int> NextBallCount { get; private set; }
+    public Watch<int> BallDestroyed { get; private set; }
+    public Watch<bool> Shooting { get; private set; }
 
     public LevelModel() {
       this.Score = new Watch<int>(1);
       this.HighScore = new Watch<int>(1);
 
-      this.BallCount = 0;
-      this.NextBallCount = 1;
-      this.BallDestroyed = 0;
-      this.Shooting = false;
+      this.BallCount = new Watch<int>(0);
+      this.NextBallCount = new Watch<int>(1);
+      this.BallDestroyed = new Watch<int>(0);
+      this.Shooting = new Watch<bool>(false);
     }
   }
 }

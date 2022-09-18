@@ -1,15 +1,25 @@
+using System;
 using BBTAN.MVC.Model;
+using DT.General;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
 
 namespace BBTAN.MVC.Controller {
   public class Shooter {
     LevelModel model;
     ShooterView view;
+    ShooterData data;
+    GameObject obj;
+    SetTimeoutFunc setTimeout;
 
-    public Shooter(LevelModel model, GameObject root) {
+    public Shooter(LevelModel model, SetTimeoutFunc setTimeOut) {
       this.model = model;
-      this.view = new ShooterView(root.transform.Find("Shooter").gameObject);
+      this.setTimeout = setTimeOut;
+      this.obj = GameObject.Find("Shooter").gameObject;
+      this.view = new ShooterView(this.obj);
       this.view.SetBallCountText(model.BallCount.Value);
+      this.data = Addressables.LoadAssetAsync<ShooterData>("Assets/MVC/ScriptableObjects/ShooterData.asset").WaitForCompletion();
     }
 
     public void Update() {
@@ -23,17 +33,18 @@ namespace BBTAN.MVC.Controller {
         // check shoot
         if (Input.GetMouseButtonDown(0)) {
           // update game state
-          GameManager.shooting = true;
-          GameManager.nextBallCount = GameManager.ballCount;
-          GameManager.ballDestroyed = 0;
+          this.model.Shooting.Value = true;
+          this.model.NextBallCount.Value = this.model.BallCount.Value;
+          this.model.BallDestroyed.Value = 0;
 
-          this.Hide();
+          this.view.Hide();
 
           // create bullets
-          var bulletVelocity = (mousePos - this.transform.position).normalized * this.bulletSpeed;
-          for (var i = 0; i < GameManager.ballCount; ++i) {
-            this.SetTimeout(this.intervalMs * i, () => {
-              Instantiate(this.bullet, this.transform.position, Quaternion.identity).GetComponent<Bullet>().SetVelocity(bulletVelocity);
+          var bulletVelocity = (mousePos - this.obj.transform.position).normalized * this.data.BulletSpeed;
+          for (var i = 0; i < this.model.BallCount.Value; ++i) {
+            this.setTimeout(this.data.IntervalMs * i, () => {
+              UnityEngine.Object.Instantiate(this.data.BallPrefab, this.obj.transform.position, Quaternion.identity);
+              // .GetComponent<Bullet>().SetVelocity(bulletVelocity);
             });
           }
         }
