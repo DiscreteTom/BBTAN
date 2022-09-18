@@ -5,3 +5,7 @@
 "dt.general.timer@https://gitpkg.now.sh/DiscreteTom/unity3d-utils/General/Timer?timer-0.1.0":
   version "0.1.0"
   resolved "https://gitpkg.now.sh/DiscreteTom/unity3d-utils/General/Timer?timer-0.1.0#a44a0fdda53378551615538a3a5449ce65e4e82c"
+
+"dt.general.timer@https://gitpkg.now.sh/DiscreteTom/unity3d-utils/General/Timer?timer-0.1.1":
+  version "0.1.1"
+  resolved "https://gitpkg.now.sh/DiscreteTom/unity3d-utils/General/Timer?timer-0.1.1#75c22d396d91c5dc858e2f07421994dadcb0b448"
