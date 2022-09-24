@@ -1,9 +1,5 @@
-using System;
-using BBTAN.MVC.Model;
-using DT.General;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Events;
 
 namespace BBTAN.MVC.Controller {
   public class Shooter {
@@ -39,18 +35,12 @@ namespace BBTAN.MVC.Controller {
 
         // check shoot
         if (Input.GetMouseButtonDown(0)) {
-          new ShootCommand().Exec(this.core);
-
           this.view.Hide();
-
-          // create bullets
           var bulletVelocity = (mousePos - this.view.transform.transform.position).normalized * this.data.BulletSpeed;
-          for (var i = 0; i < this.core.Model.BallCount.Value; ++i) {
-            this.core.SetTimeout(this.data.IntervalMs * i, () => {
-              var bulletView = GameObject.Instantiate(this.data.BallPrefab, this.view.transform.transform.position, Quaternion.identity).GetComponent<BulletView>();
-              this.core.Events.NewBulletEvent.Invoke(bulletView, bulletVelocity);
-            });
-          }
+
+          new ShootCommand {
+            BallPrefab = this.data.BallPrefab, IntervalMs = this.data.IntervalMs, Position = this.view.transform.position, Velocity = bulletVelocity
+          }.Exec(this.core);
         }
       }
     }

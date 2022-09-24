@@ -1,4 +1,4 @@
-using BBTAN.MVC.Model;
+using BBTAN.MVC.Controller;
 using DT.General;
 using UnityEngine;
 
@@ -14,27 +14,37 @@ namespace BBTAN.MVC {
     }
   }
 
-  public struct ShootCommand : ICommand {
+  public class ShootCommand : ICommand {
+    public float IntervalMs;
+    public GameObject BallPrefab;
+    public Vector3 Position;
+    public Vector2 Velocity;
+
     public void Exec(Core core) {
+      // update states
       core.Model.Shooting.Value = true;
       core.Model.NextBallCount.Value = core.Model.BallCount.Value;
       core.Model.BallDestroyed.Value = 0;
+
+      // generate bullets
+      for (var i = 0; i < core.Model.BallCount.Value; ++i) {
+        core.SetTimeout(this.IntervalMs * i, () => {
+          var bulletView = GameObject.Instantiate(this.BallPrefab, this.Position, Quaternion.identity).GetComponent<BulletView>();
+          core.Events.NewBulletEvent.Invoke(bulletView, this.Velocity);
+        });
+      }
     }
   }
 
   public struct DestroyBulletCommand : ICommand {
-    float positionX;
-
-    public DestroyBulletCommand(float positionX) {
-      this.positionX = positionX;
-    }
+    public float PositionX;
 
     public void Exec(Core core) {
       core.Model.BallDestroyed.Value++;
 
       // if first ball, change shooter position
       if (core.Model.BallDestroyed.Value == 1) {
-        core.Events.SetShooterXEvent.Invoke(this.positionX);
+        core.Events.SetShooterXEvent.Invoke(this.PositionX);
       }
 
       // if all ball destroyed, end this turn
@@ -46,7 +56,6 @@ namespace BBTAN.MVC {
           core.Model.HighScore.Value = core.Model.Score.Value;
         }
         core.Events.ShowShooterEvent.Invoke();
-        // shooter.UpdateProps();
       }
     }
   }
