@@ -1,24 +1,26 @@
 using BBTAN.MVC.Controller;
 using BBTAN.MVC.Model;
-using UnityEngine;
 using DT.General;
+using UnityEngine;
 
 namespace BBTAN.MVC {
   public class App : MonoBehaviour {
-    LevelModel model;
+    Core core;
 
     // controllers
     UI ui;
     Shooter shooter;
 
     void Start() {
-      // init model
-      this.model = new LevelModel();
+      // init core
+      this.core = new Core() {
+        Model = new LevelModel(),
+        SetTimeout = this.SetTimeout
+      };
 
       // init controllers
-      this.ui = new UI(model);
-      this.shooter = new Shooter(model, this.SetTimeout);
-
+      this.ui = new UI(core);
+      this.shooter = new Shooter(core);
     }
 
     void Update() {
