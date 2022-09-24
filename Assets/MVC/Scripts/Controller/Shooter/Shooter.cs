@@ -1,3 +1,4 @@
+using BBTAN.MVC.CoreLib;
 using UnityEngine;
 
 namespace BBTAN.MVC.Controller {

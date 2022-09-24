@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BBTAN.MVC {
+namespace BBTAN.MVC.CoreLib {
   public interface ICommand {
     void Exec(Core core);
   }

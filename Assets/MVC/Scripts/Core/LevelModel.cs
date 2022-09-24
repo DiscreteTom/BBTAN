@@ -1,6 +1,6 @@
 using DT.General;
 
-namespace BBTAN.MVC.Model {
+namespace BBTAN.MVC.CoreLib {
   public class LevelModel {
     public Watch<int> Score { get; private set; }
     public Watch<int> HighScore { get; private set; }

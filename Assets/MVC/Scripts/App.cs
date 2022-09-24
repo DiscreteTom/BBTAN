@@ -1,5 +1,5 @@
 using BBTAN.MVC.Controller;
-using BBTAN.MVC.Model;
+using BBTAN.MVC.CoreLib;
 using DT.General;
 using UnityEngine;
 
