@@ -1,5 +1,3 @@
-using BBTAN.MVC.Controller;
-using DT.General;
 using UnityEngine;
 
 namespace BBTAN.MVC {
@@ -14,11 +12,9 @@ namespace BBTAN.MVC {
     }
   }
 
-  public class ShootCommand : ICommand {
-    public float IntervalMs;
-    public GameObject BallPrefab;
-    public Vector3 Position;
-    public Vector2 Velocity;
+  public struct ShootCommand : ICommand {
+    public Vector2 From;
+    public Vector2 To;
 
     public void Exec(Core core) {
       // update states
@@ -27,12 +23,7 @@ namespace BBTAN.MVC {
       core.Model.BallDestroyed.Value = 0;
 
       // generate bullets
-      for (var i = 0; i < core.Model.BallCount.Value; ++i) {
-        core.SetTimeout(this.IntervalMs * i, () => {
-          var bulletView = GameObject.Instantiate(this.BallPrefab, this.Position, Quaternion.identity).GetComponent<BulletView>();
-          core.Events.NewBulletEvent.Invoke(bulletView, this.Velocity);
-        });
-      }
+      core.Events.ShootBulletEvent.Invoke(this.From, this.To);
     }
   }
 

@@ -1,21 +1,30 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace BBTAN.MVC.Controller {
   public class Bullets {
-    public Bullets(Core core) {
-      core.Events.NewBulletEvent.AddListener((view, velocity) => {
-        view.Init();
-        view.Velocity = velocity;
-        view.OnRandomTrigger.AddListener(() => {
-          view.Velocity = view.Velocity.magnitude * new Vector2(Random.Range(-1.0f, 1.0f), 1).normalized;
-        });
-        view.OnTouchBottom.AddListener(() => {
-          // update game state
-          new DestroyBulletCommand { PositionX = view.transform.position.x }.Exec(core);
+    BulletsData data;
 
-          GameObject.Destroy(view.gameObject);
-        });
+    public Bullets(Core core) {
+      this.data = Addressables.LoadAssetAsync<BulletsData>("Assets/MVC/ScriptableObjects/BulletsData.asset").WaitForCompletion();
+
+      core.Events.ShootBulletEvent.AddListener((from, to) => {
+        for (var i = 0; i < core.Model.BallCount.Value; ++i) {
+          core.SetTimeout(this.data.IntervalMs * i, () => {
+            var view = GameObject.Instantiate(this.data.BulletPrefab, from, Quaternion.identity).GetComponent<BulletView>();
+            view.Init();
+            view.Velocity = (to - from).normalized * this.data.BulletSpeed;
+            view.OnRandomTrigger.AddListener(() => {
+              view.Velocity = view.Velocity.magnitude * new Vector2(Random.Range(-1.0f, 1.0f), 1).normalized;
+            });
+            view.OnTouchBottom.AddListener(() => {
+              // update game state
+              new DestroyBulletCommand { PositionX = view.transform.position.x }.Exec(core);
+
+              GameObject.Destroy(view.gameObject);
+            });
+          });
+        }
       });
     }
   }

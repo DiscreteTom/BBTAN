@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c856a2948e46a42b9f04051e199a33, type: 3}
-  m_Name: ShooterData
+  m_Script: {fileID: 11500000, guid: be8570c76956eef4bbcbe2575f9076a6, type: 3}
+  m_Name: BulletsData
   m_EditorClassIdentifier: 
   BulletSpeed: 5
   IntervalMs: 100
-  BallPrefab: {fileID: 3184469578661429681, guid: 4f4173d1c76b9f7408c86d31aca4e69c, type: 3}
+  BulletPrefab: {fileID: 3184469578661429681, guid: 4f4173d1c76b9f7408c86d31aca4e69c, type: 3}

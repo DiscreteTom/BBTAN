@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 7aa329917486ace4bbc3b6fde999440b
   m_SerializeEntries:
-  - m_GUID: 656a026c1da317b42b46c757535fba69
-    m_Address: Assets/MVC/ScriptableObjects/ShooterData.asset
+  - m_GUID: f11491573cd4bb342985971533460340
+    m_Address: Assets/MVC/ScriptableObjects/BulletsData.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
