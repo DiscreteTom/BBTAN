@@ -14,7 +14,7 @@ namespace BBTAN.MVC.Model {
       this.Score = new Watch<int>(1);
       this.HighScore = new Watch<int>(1);
 
-      this.BallCount = new Watch<int>(0);
+      this.BallCount = new Watch<int>(1);
       this.NextBallCount = new Watch<int>(1);
       this.BallDestroyed = new Watch<int>(0);
       this.Shooting = new Watch<bool>(false);

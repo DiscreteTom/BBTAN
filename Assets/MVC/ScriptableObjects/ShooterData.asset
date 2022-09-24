@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpeed: 5
   IntervalMs: 100
-  ballPrefab: {fileID: 0}
+  BallPrefab: {fileID: 3184469578661429681, guid: 4f4173d1c76b9f7408c86d31aca4e69c, type: 3}

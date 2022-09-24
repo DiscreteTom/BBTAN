@@ -10,17 +10,20 @@ namespace BBTAN.MVC {
     // controllers
     UI ui;
     Shooter shooter;
+    Bullets bullets;
 
     void Start() {
       // init core
       this.core = new Core() {
         Model = new LevelModel(),
-        SetTimeout = this.SetTimeout
+        SetTimeout = this.SetTimeout,
+        Events = new Events()
       };
 
       // init controllers
       this.ui = new UI(core);
       this.shooter = new Shooter(core);
+      this.bullets = new Bullets(core);
     }
 
     void Update() {

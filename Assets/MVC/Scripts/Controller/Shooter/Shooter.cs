@@ -7,24 +7,31 @@ using UnityEngine.Events;
 
 namespace BBTAN.MVC.Controller {
   public class Shooter {
-    LevelModel model;
+    Core core;
     ShooterView view;
     ShooterData data;
-    GameObject obj;
-    SetTimeoutFunc setTimeout;
 
-    public Shooter(LevelModel model, SetTimeoutFunc setTimeOut) {
-      this.model = model;
-      this.setTimeout = setTimeOut;
-      this.obj = GameObject.Find("Shooter").gameObject;
-      this.view = new ShooterView(this.obj);
-      this.view.SetBallCountText(model.BallCount.Value);
+    public Shooter(Core core) {
+      this.core = core;
+      this.view = GameObject.Find("Shooter").GetComponent<ShooterView>();
+      this.view.Init();
+      this.view.SetBallCountText(core.Model.BallCount.Value);
       this.data = Addressables.LoadAssetAsync<ShooterData>("Assets/MVC/ScriptableObjects/ShooterData.asset").WaitForCompletion();
+      this.core.Events.SetShooterXEvent.AddListener((x) => {
+        var pos = this.view.transform.position;
+        pos.x = x;
+        this.view.transform.position = pos;
+      });
+      this.core.Events.ShowShooterEvent.AddListener(() => {
+        this.view.Show();
+        this.view.SetLineSource();
+        this.view.SetBallCountText(core.Model.BallCount.Value);
+      });
     }
 
     public void Update() {
       // if not shooting, should aim and check shoot
-      if (!this.model.Shooting.Value) {
+      if (!this.core.Model.Shooting.Value) {
         // draw aim line
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
@@ -32,19 +39,16 @@ namespace BBTAN.MVC.Controller {
 
         // check shoot
         if (Input.GetMouseButtonDown(0)) {
-          // update game state
-          this.model.Shooting.Value = true;
-          this.model.NextBallCount.Value = this.model.BallCount.Value;
-          this.model.BallDestroyed.Value = 0;
+          new ShootCommand().Exec(this.core);
 
           this.view.Hide();
 
           // create bullets
-          var bulletVelocity = (mousePos - this.obj.transform.position).normalized * this.data.BulletSpeed;
-          for (var i = 0; i < this.model.BallCount.Value; ++i) {
-            this.setTimeout(this.data.IntervalMs * i, () => {
-              UnityEngine.Object.Instantiate(this.data.BallPrefab, this.obj.transform.position, Quaternion.identity);
-              // .GetComponent<Bullet>().SetVelocity(bulletVelocity);
+          var bulletVelocity = (mousePos - this.view.transform.transform.position).normalized * this.data.BulletSpeed;
+          for (var i = 0; i < this.core.Model.BallCount.Value; ++i) {
+            this.core.SetTimeout(this.data.IntervalMs * i, () => {
+              var bulletView = GameObject.Instantiate(this.data.BallPrefab, this.view.transform.transform.position, Quaternion.identity).GetComponent<BulletView>();
+              this.core.Events.NewBulletEvent.Invoke(bulletView, bulletVelocity);
             });
           }
         }

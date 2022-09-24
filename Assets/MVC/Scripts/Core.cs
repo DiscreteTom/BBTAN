@@ -6,5 +6,6 @@ namespace BBTAN.MVC {
   public class Core {
     public LevelModel Model;
     public SetTimeoutFunc SetTimeout;
+    public Events Events;
   }
 }
