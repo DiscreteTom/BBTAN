@@ -10,16 +10,16 @@ namespace BBTAN.MVC.Controller {
       this.core = core;
       this.view = GameObject.Find("Shooter").GetComponent<ShooterView>();
       this.view.Init();
-      this.view.SetBallCountText(core.Model.BallCount.Value);
-      this.core.Events.SetShooterXEvent.AddListener((x) => {
+      this.view.SetBallCountText(core.Model.BulletCount.Value);
+      this.core.Events.SetShooterX.AddListener((x) => {
         var pos = this.view.transform.position;
         pos.x = x;
         this.view.transform.position = pos;
       });
-      this.core.Events.ShowShooterEvent.AddListener(() => {
+      this.core.Events.TurnEnd.AddListener(() => {
         this.view.Show();
         this.view.SetLineSource();
-        this.view.SetBallCountText(core.Model.BallCount.Value);
+        this.view.SetBallCountText(core.Model.BulletCount.Value);
       });
     }
 

@@ -9,8 +9,8 @@ namespace BBTAN.MVC.Controller {
     public Bullets(Core core) {
       this.data = Addressables.LoadAssetAsync<BulletsData>("Assets/MVC/ScriptableObjects/BulletsData.asset").WaitForCompletion();
 
-      core.Events.ShootBulletEvent.AddListener((from, to) => {
-        for (var i = 0; i < core.Model.BallCount.Value; ++i) {
+      core.Events.ShootBullet.AddListener((from, to) => {
+        for (var i = 0; i < core.Model.BulletCount.Value; ++i) {
           core.SetTimeout(this.data.IntervalMs * i, () => {
             var view = GameObject.Instantiate(this.data.BulletPrefab, from, Quaternion.identity).GetComponent<BulletView>();
             view.Init();
