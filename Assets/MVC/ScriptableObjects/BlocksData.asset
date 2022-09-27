@@ -16,3 +16,5 @@ MonoBehaviour:
   DiamondBlockPrefab: {fileID: 7578315588145041649, guid: 115e0580fc6fad0429871c9c8a9156ed, type: 3}
   InitBlockY: 3.25
   BlockSpacing: 0.5
+  RandomProp: {fileID: 5232560606736089244, guid: e5c3c853ed8a9af4fbe61d075d515232, type: 3}
+  PlusOneProp: {fileID: 1807534737425013736, guid: 70a2d543fd2cd584e851abde561b0198, type: 3}

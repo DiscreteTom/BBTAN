@@ -27,5 +27,7 @@ namespace BBTAN.MVC.CoreLib {
     BLANK,
     BLOCK,
     DIAMOND,
+    RANDOM,
+    PLUS_ONE,
   }
 }

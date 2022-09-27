@@ -16,3 +16,4 @@ MonoBehaviour:
   BlankWeight: 2
   BlockWeight: 4
   DiamondBlockWeight: 3
+  RandomPropWeight: 1

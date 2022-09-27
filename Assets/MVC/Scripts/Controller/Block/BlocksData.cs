@@ -7,5 +7,7 @@ namespace BBTAN.MVC.Controller {
     public GameObject DiamondBlockPrefab;
     public float InitBlockY;
     public float BlockSpacing;
+    public GameObject RandomProp;
+    public GameObject PlusOneProp;
   }
 }

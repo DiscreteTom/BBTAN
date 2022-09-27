@@ -47,13 +47,26 @@ namespace BBTAN.MVC.CoreLib {
     public void Exec(Core core) {
       // calculate block & prop position
       var e = new BlockPropType[core.Config.BlockPropCount];
+      var plusOneIndex = Random.Range(0, e.Length);
       for (var i = 0; i < core.Config.BlockPropCount; ++i) {
-        var r = Random.Range(0, core.Config.BlockWeight + core.Config.DiamondBlockWeight + core.Config.BlankWeight);
+        if (i == plusOneIndex) {
+          e[i] = BlockPropType.PLUS_ONE;
+          continue;
+        }
+
+        var r = Random.Range(0, core.Config.BlockWeight + core.Config.DiamondBlockWeight + core.Config.RandomPropWeight + core.Config.BlankWeight);
         if (r < core.Config.BlockWeight) e[i] = BlockPropType.BLOCK;
         else if (r < core.Config.BlockWeight + core.Config.DiamondBlockWeight) e[i] = BlockPropType.DIAMOND;
+        else if (r < core.Config.BlankWeight + core.Config.DiamondBlockWeight + core.Config.RandomPropWeight) e[i] = BlockPropType.RANDOM;
         else e[i] = BlockPropType.BLANK;
       }
       core.Events.TurnEnd.Invoke(e);
+    }
+  }
+
+  public struct AddBulletCommand : ICommand {
+    public void Exec(Core core) {
+      core.Model.NextBulletCount.Value++;
     }
   }
 }

@@ -24,6 +24,9 @@ namespace BBTAN.MVC.Controller {
 
               GameObject.Destroy(view.gameObject);
             });
+            view.OnPlusOneTrigger.AddListener(() => {
+              new AddBulletCommand().Exec(core);
+            });
           });
         }
       });

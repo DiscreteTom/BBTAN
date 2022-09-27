@@ -7,5 +7,6 @@ namespace BBTAN.MVC.CoreLib {
     public int BlankWeight;
     public int BlockWeight;
     public int DiamondBlockWeight;
+    public int RandomPropWeight;
   }
 }

@@ -13,6 +13,7 @@ namespace BBTAN.MVC {
     Shooter shooter;
     Bullets bullets;
     Blocks blocks;
+    Props props;
 
     void Start() {
       // init core
@@ -28,6 +29,7 @@ namespace BBTAN.MVC {
       this.shooter = new Shooter(core);
       this.bullets = new Bullets(core);
       this.blocks = new Blocks(core);
+      this.props = new Props(core);
 
       // generate blocks, enter level 1
       new TurnEndCommand().Exec(core);

@@ -12,6 +12,7 @@ namespace BBTAN.MVC.Controller {
 
     // Events
     public UnityEvent OnRandomTrigger { get; private set; }
+    public UnityEvent OnPlusOneTrigger { get; private set; }
     public UnityEvent OnTouchBottom { get; private set; }
 
     public void Init() {
@@ -19,11 +20,16 @@ namespace BBTAN.MVC.Controller {
 
       this.OnRandomTrigger = new UnityEvent();
       this.OnTouchBottom = new UnityEvent();
+      this.OnPlusOneTrigger = new UnityEvent();
     }
 
     void OnTriggerEnter2D(Collider2D c) {
       if (c.gameObject.tag == "Random") {
         this.OnRandomTrigger.Invoke();
+      }
+      if (c.gameObject.tag == "PlusOne") {
+        Destroy(c.gameObject);
+        this.OnPlusOneTrigger.Invoke();
       }
     }
 
