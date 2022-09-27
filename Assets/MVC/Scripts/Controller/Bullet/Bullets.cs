@@ -1,20 +1,16 @@
 using BBTAN.MVC.CoreLib;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace BBTAN.MVC.Controller {
   public class Bullets {
-    BulletsData data;
 
     public Bullets(Core core) {
-      this.data = Addressables.LoadAssetAsync<BulletsData>("Assets/MVC/ScriptableObjects/BulletsData.asset").WaitForCompletion();
-
       core.Events.ShootBullet.AddListener((from, to) => {
         for (var i = 0; i < core.Model.BulletCount.Value; ++i) {
-          core.SetTimeout(this.data.IntervalMs * i, () => {
-            var view = GameObject.Instantiate(this.data.BulletPrefab, from, Quaternion.identity).GetComponent<BulletView>();
+          core.SetTimeout(core.Config.Bullets.IntervalMs * i, () => {
+            var view = GameObject.Instantiate(core.Config.Bullets.Prefab, from, Quaternion.identity).GetComponent<BulletView>();
             view.Init();
-            view.Velocity = (to - from).normalized * this.data.BulletSpeed;
+            view.Velocity = (to - from).normalized * core.Config.Bullets.Speed;
             view.OnRandomTrigger.AddListener(() => {
               view.Velocity = view.Velocity.magnitude * new Vector2(Random.Range(-1.0f, 1.0f), 1).normalized;
             });

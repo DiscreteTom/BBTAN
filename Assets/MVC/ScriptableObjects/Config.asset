@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5716875feaf4440864bb02ae14ba98, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
-  BlockPropCount: 11
-  BlankWeight: 2
-  BlockWeight: 4
-  DiamondBlockWeight: 3
-  RandomPropWeight: 1
+  BlockProps:
+    Block: {fileID: 3591692481969505019, guid: d9a27e6d4d88f5945b123a0fdbf465e1, type: 3}
+    DiamondBlock: {fileID: 7578315588145041649, guid: 115e0580fc6fad0429871c9c8a9156ed, type: 3}
+    RandomProp: {fileID: 5232560606736089244, guid: e5c3c853ed8a9af4fbe61d075d515232, type: 3}
+    PlusOneProp: {fileID: 1807534737425013736, guid: 70a2d543fd2cd584e851abde561b0198, type: 3}
+    InitY: 3.25
+    Spacing: 0.5
+    Count: 11
+    BlankWeight: 2
+    BlockWeight: 4
+    DiamondBlockWeight: 3
+    RandomPropWeight: 1
+  Bullets:
+    Speed: 5
+    IntervalMs: 100
+    Prefab: {fileID: 3184469578661429681, guid: 4f4173d1c76b9f7408c86d31aca4e69c, type: 3}
