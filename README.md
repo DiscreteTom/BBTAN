@@ -2,6 +2,8 @@
 
 复刻经典游戏《BBTAN》，用来练手的游戏项目，没有完全复刻所有功能。
 
+![play](./img/play.png)
+
 ## 目录结构
 
 ### Assets/Naive
