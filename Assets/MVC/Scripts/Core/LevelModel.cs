@@ -26,5 +26,6 @@ namespace BBTAN.MVC.CoreLib {
   public enum BlockPropType {
     BLANK,
     BLOCK,
+    DIAMOND,
   }
 }

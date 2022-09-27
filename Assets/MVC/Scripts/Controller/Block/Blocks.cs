@@ -20,8 +20,13 @@ namespace BBTAN.MVC.Controller {
 
         // generate new blocks
         for (var i = 0; i < e.Length; i++) {
+          GameObject obj = null;
           if (e[i] == BlockPropType.BLOCK) {
-            var obj = GameObject.Instantiate(this.data.BlockPrefab, new Vector3((i - (core.Config.BlockPropCount - 1) / 2.0f) * this.data.BlockSpacing, this.data.InitBlockY, 0), Quaternion.identity);
+            obj = GameObject.Instantiate(this.data.BlockPrefab, new Vector3((i - (core.Config.BlockPropCount - 1) / 2.0f) * this.data.BlockSpacing, this.data.InitBlockY, 0), Quaternion.identity);
+          } else if (e[i] == BlockPropType.DIAMOND) {
+            obj = GameObject.Instantiate(this.data.DiamondBlockPrefab, new Vector3((i - (core.Config.BlockPropCount - 1) / 2.0f) * this.data.BlockSpacing, this.data.InitBlockY, 0), Quaternion.identity);
+          }
+          if (obj != null) {
             obj.transform.parent = this.container;
             var view = obj.GetComponent<BlockView>();
             view.Init(core.Model.Score.Value);

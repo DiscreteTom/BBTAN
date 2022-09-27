@@ -48,8 +48,9 @@ namespace BBTAN.MVC.CoreLib {
       // calculate block & prop position
       var e = new BlockPropType[core.Config.BlockPropCount];
       for (var i = 0; i < core.Config.BlockPropCount; ++i) {
-        var r = Random.Range(0, core.Config.BlockWeight + core.Config.BlankWeight);
+        var r = Random.Range(0, core.Config.BlockWeight + core.Config.DiamondBlockWeight + core.Config.BlankWeight);
         if (r < core.Config.BlockWeight) e[i] = BlockPropType.BLOCK;
+        else if (r < core.Config.BlockWeight + core.Config.DiamondBlockWeight) e[i] = BlockPropType.DIAMOND;
         else e[i] = BlockPropType.BLANK;
       }
       core.Events.TurnEnd.Invoke(e);

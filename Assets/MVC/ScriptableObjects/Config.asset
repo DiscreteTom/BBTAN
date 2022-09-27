@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   BlockPropCount: 11
-  BlockWeight: 4
   BlankWeight: 2
+  BlockWeight: 4
+  DiamondBlockWeight: 3
