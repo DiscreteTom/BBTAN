@@ -37,8 +37,22 @@ namespace BBTAN.MVC.CoreLib {
         core.Model.BulletCount.Value = core.Model.NextBulletCount.Value;
         core.Model.Score.Value++;
         core.Model.HighScore.Value = Mathf.Max(core.Model.HighScore.Value, core.Model.Score.Value);
-        core.Events.TurnEnd.Invoke();
+
+        new TurnEndCommand().Exec(core);
       }
+    }
+  }
+
+  public struct TurnEndCommand : ICommand {
+    public void Exec(Core core) {
+      // calculate block & prop position
+      var e = new BlockPropType[core.Config.BlockPropCount];
+      for (var i = 0; i < core.Config.BlockPropCount; ++i) {
+        var r = Random.Range(0, core.Config.BlockWeight + core.Config.BlankWeight);
+        if (r < core.Config.BlockWeight) e[i] = BlockPropType.BLOCK;
+        else e[i] = BlockPropType.BLANK;
+      }
+      core.Events.TurnEnd.Invoke(e);
     }
   }
 }

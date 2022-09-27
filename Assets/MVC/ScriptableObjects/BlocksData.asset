@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bcd537b427aa046ac5e72e77b30efb, type: 3}
+  m_Name: BlocksData
+  m_EditorClassIdentifier: 
+  BlockPrefab: {fileID: 3591692481969505019, guid: d9a27e6d4d88f5945b123a0fdbf465e1, type: 3}
+  DiamondBlockPrefab: {fileID: 0}
+  InitBlockY: 3.25
+  BlockSpacing: 0.5

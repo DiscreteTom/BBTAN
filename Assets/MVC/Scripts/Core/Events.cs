@@ -3,9 +3,10 @@ using UnityEngine.Events;
 
 namespace BBTAN.MVC.CoreLib {
   public class Events {
+    // from, to
     public UnityEvent<Vector2, Vector2> ShootBullet = new UnityEvent<Vector2, Vector2>();
+    // x
     public UnityEvent<float> SetShooterX = new UnityEvent<float>();
-    public UnityEvent TurnEnd = new UnityEvent();
-    public UnityEvent<Vector2, int> NewBlock = new UnityEvent<Vector2, int>();
+    public UnityEvent<BlockPropType[]> TurnEnd = new UnityEvent<BlockPropType[]>();
   }
 }

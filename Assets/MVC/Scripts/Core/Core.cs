@@ -5,5 +5,6 @@ namespace BBTAN.MVC.CoreLib {
     public LevelModel Model;
     public SetTimeoutFunc SetTimeout;
     public Events Events;
+    public Config Config;
   }
 }

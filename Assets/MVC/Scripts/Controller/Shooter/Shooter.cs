@@ -16,7 +16,7 @@ namespace BBTAN.MVC.Controller {
         pos.x = x;
         this.view.transform.position = pos;
       });
-      this.core.Events.TurnEnd.AddListener(() => {
+      this.core.Events.TurnEnd.AddListener((_) => {
         this.view.Show();
         this.view.SetLineSource();
         this.view.SetBallCountText(core.Model.BulletCount.Value);

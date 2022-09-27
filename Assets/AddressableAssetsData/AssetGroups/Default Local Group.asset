@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: Assets/MVC/ScriptableObjects/BulletsData.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: f8ce43a570e47fb4e88c476bdf4f7f9a
+    m_Address: Assets/MVC/ScriptableObjects/BlocksData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e5c3ff86016d024fb7ef5c48a6c5820
+    m_Address: Assets/MVC/ScriptableObjects/Config.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c3b24c96206f6b54ba5c4a2eb646129e, type: 2}
   m_SchemaSet:
