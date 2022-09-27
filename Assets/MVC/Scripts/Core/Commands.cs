@@ -57,7 +57,7 @@ namespace BBTAN.MVC.CoreLib {
         var r = Random.Range(0, core.Config.BlockProps.BlockWeight + core.Config.BlockProps.DiamondBlockWeight + core.Config.BlockProps.RandomPropWeight + core.Config.BlockProps.BlankWeight);
         if (r < core.Config.BlockProps.BlockWeight) e[i] = BlockPropType.BLOCK;
         else if (r < core.Config.BlockProps.BlockWeight + core.Config.BlockProps.DiamondBlockWeight) e[i] = BlockPropType.DIAMOND;
-        else if (r < core.Config.BlockProps.BlankWeight + core.Config.BlockProps.DiamondBlockWeight + core.Config.BlockProps.RandomPropWeight) e[i] = BlockPropType.RANDOM;
+        else if (r < core.Config.BlockProps.BlockWeight + core.Config.BlockProps.DiamondBlockWeight + core.Config.BlockProps.RandomPropWeight) e[i] = BlockPropType.RANDOM;
         else e[i] = BlockPropType.BLANK;
       }
       core.Events.TurnEnd.Invoke(e);
