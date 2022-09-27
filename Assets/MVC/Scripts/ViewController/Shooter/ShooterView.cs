@@ -33,7 +33,7 @@ namespace BBTAN.MVC.Controller {
     public void SetLineSource() {
       this.line.SetPosition(0, this.transform.position);
     }
-    public void SetLineTarget(Vector3 target) {
+    public void SetLineTarget(Vector2 target) {
       this.line.SetPosition(1, target);
     }
 
